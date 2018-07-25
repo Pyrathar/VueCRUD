@@ -6,7 +6,7 @@
           <router-link :to="{ name: 'Create' }" class="nav-link">Add Item</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Index' }" class="nav-link">All Items</router-link>
+          <router-link :to="{ name: 'CreateIssue' }" class="nav-link">Create Issue</router-link>
         </li>
         <li class="nav-item">
           <router-link :to="{ name: 'Index' }" class="nav-link">All Items</router-link>

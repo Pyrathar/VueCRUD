@@ -8,6 +8,7 @@ import App from './App.vue';
 import Create from './components/Create.vue';
 import Edit from './components/Edit.vue';
 import Index from './components/Index.vue';
+import CreateIssue from './components/CreateIssue.vue';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/nprogress/nprogress.css';
@@ -22,6 +23,11 @@ const routes = [
     name: 'Create',
     path: '/create',
     component: Create
+  },
+  {
+    name: 'CreateIssue',
+    path: '/createIssue',
+    component: CreateIssue
   },
   {
     name: 'Edit',
