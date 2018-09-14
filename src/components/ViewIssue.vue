@@ -10,18 +10,15 @@
                 <form v-on:submit.prevent="updateItem">
                     <div class="form-group">
                         <label>Item Name:</label>
-                        <input type="text" class="form-control" v-model="item.name"/>
+                        <input type="text" class="form-control" v-model="issue.name"/>
                     </div>
                     <div class="form-group">
                         <label>Item Price:</label>
-                        <input type="text" class="form-control" v-model="item.price" />
+                        <input type="text" class="form-control" v-model="issue.name" />
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Update Item"/>
                     </div>
-                    <h2>Book List
-                      <b-link @click="logout()">(Logout)</b-link>
-                    </h2>
                 </form>
             </div>
         </div>
@@ -31,7 +28,7 @@
 export default{
         data(){
             return{
-                item:{}
+                issue:{}
             }
         },
 
@@ -40,25 +37,11 @@ export default{
         },
 
         methods: {
-            logout () {
-              localStorage.removeItem('jwtToken')
-              this.$router.push({
-                name: 'Login'
-              })
-            },
             getItem()
             {
-              let uri = 'http://localhost:4000/items/edit/' + this.$route.params.id;
+              let uri = 'http://localhost:4000/issues/view/' + this.$route.params.id;
                 this.axios.get(uri).then((response) => {
-                    this.item = response.data;
-                });
-            },
-
-            updateItem()
-            {
-              let uri = 'http://localhost:4000/items/update/' + this.$route.params.id;
-                this.axios.post(uri, this.item).then((response) => {
-                  this.$router.push({name: 'Index'});
+                    this.issue = response.data;
                 });
             }
         }

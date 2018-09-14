@@ -2,25 +2,31 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Define collection and schema for Items
-var Invoice = new Schema({
+var Issue = new Schema({
   name: {
     type: String
   },
   upvotes: {
     type: Number
   },
+  type: {
+    type: String
+  },
   downvotes: {
     type: Number
   },
-  Description: {
+  description: {
     type: String
   },
-  Comments: {
+  comments: {
+    type: String
+  },
+  createdBy: {
     type: String
   },
 
 },{
-    collection: 'invoices'
+    collection: 'issues'
 });
 
-module.exports = mongoose.model('Invoice', Invoice);
+module.exports = mongoose.model('Issue', Issue);

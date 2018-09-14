@@ -13,7 +13,7 @@
             </thead>
 
             <tbody>
-                <tr v-for="item in items" :key="item._id">
+                <tr v-for="item in items" :key="item._id" v-on:click="deletePost(item)">
                     <td>{{ item._id }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.price }}</td>
@@ -40,6 +40,13 @@
         },
 
         methods: {
+            deletePost(item) {
+              console.log("bitches",item)
+              this.$router.push({
+                name: 'Edit',
+                params: {id: item._id}
+               })
+            },
             fetchItems()
             {
               let uri = 'http://localhost:4000/items';

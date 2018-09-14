@@ -3,19 +3,25 @@
     <nav class="navbar navbar-expand-sm bg-light">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link :to="{ name: 'Create' }" class="nav-link">Add Item</router-link>
+          <router-link :to="{ name: 'Create' }" class="nav-link">Invoices</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'CreateIssue' }" class="nav-link">Create Issue</router-link>
+          <router-link :to="{ name: 'ListBills' }" class="nav-link">Bills</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Index' }" class="nav-link">All Items</router-link>
+          <router-link :to="{ name: 'Index' }" class="nav-link">Quotes</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Index' }" class="nav-link">All Items</router-link>
+          <router-link :to="{ name: 'Index' }" class="nav-link">Bank Sync</router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Index' }" class="nav-link">All Items</router-link>
+          <router-link :to="{ name: 'Index' }" class="nav-link">Annual Report</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Index' }" class="nav-link">Settings</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'CreateIssue' }" class="nav-link">New Issue</router-link>
         </li>
       </ul>
     </nav>

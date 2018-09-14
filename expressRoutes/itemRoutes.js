@@ -3,22 +3,29 @@
 var express = require('express');
 var app = express();
 var itemRoutes = express.Router();
+var passport = require('passport');
+require('../config/passport')(passport);
 
 // Require Item model in our routes module
 var Item = require('../models/Items');
 
 // Defined store route
-itemRoutes.route('/add').post(function (req, res) {
-  console.log(req.body)
-  var item = new Item(req.body);
-      item.save()
-    .then(item => {
-    res.status(200).json({'item': 'Item added successfully'});
-    })
-    .catch(err => {
-      console.log(err)
-    res.status(400).send("unable to save to database");
-    });
+itemRoutes.post('/add', passport.authenticate('jwt', { session: false}), function(req, res) {
+  var token = getToken(req.headers);
+  if (token) {
+    console.log(req.body)
+    var item = new Item(req.body);
+        item.save()
+      .then(item => {
+      res.status(200).json({'item': 'Item added successfully'});
+      })
+      .catch(err => {
+        console.log(err)
+      res.status(400).send("unable to save to database");
+      });
+  } else {
+    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+  }
 });
 
 // Defined get data(index or listing) route
@@ -69,3 +76,17 @@ itemRoutes.route('/delete/:id').get(function (req, res) {
 });
 
 module.exports = itemRoutes;
+
+// Function to get tokens
+function getToken(headers) {
+  if (headers && headers.authorization) {
+    var parted = headers.authorization.split(' ');
+    if (parted.length === 2) {
+      return parted[1];
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+};

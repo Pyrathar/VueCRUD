@@ -1,3 +1,4 @@
+const auth = require('./expressRoutes/Auth');
 const express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
@@ -6,6 +7,7 @@ const express = require('express'),
     config = require('./config/DB');
 
     const itemRoutes = require('./expressRoutes/itemRoutes');
+    const issuesRoutes = require('./expressRoutes/IssuesRoutes');
 
     mongoose.Promise = global.Promise;
     mongoose.connect(config.DB).then(
@@ -17,8 +19,9 @@ const express = require('express'),
     app.use(express.static('public'));
     app.use(bodyParser.json());
     app.use(cors());
-
+    app.use('/api/auth', auth);
     app.use('/items', itemRoutes);
+    app.use('/issues',issuesRoutes);
 
     const port = process.env.PORT || 4000;
 

@@ -4,17 +4,21 @@
   <div class="container">
         <div class="card">
             <div class="card-header">
-                <h3>Add Item</h3>
+                <h3>Create Issue</h3>
             </div>
             <div class="card-body">
-                <form v-on:submit.prevent="addItem">
+                <form v-on:submit.prevent="addIssue">
                     <div class="form-group">
-                        <label>Item Name:</label>
-                        <input type="text" class="form-control" v-model="item.name"/>
+                        <label>Title:</label>
+                        <input type="text" class="form-control" v-model="issues.name"/>
                     </div>
                     <div class="form-group">
-                        <label>Item Price:</label>
-                        <input type="text" class="form-control" v-model="item.price"/>
+                        <label>Type:</label>
+                        <input type="text" class="form-control" v-model="issues.type"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <input type="text" class="form-control" v-model="issues.description"/>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Add Item"/>
@@ -28,17 +32,17 @@
 <script>
 export default {
   components: {
-      name: 'AddItem'
+      name: 'addIssue'
   },
   data() {
       return {
-          item: {}
+          issues: {}
       }
   },
   methods: {
-      addItem() {
-           let uri = 'http://localhost:4000/items/add';
-            this.axios.post(uri, this.item).then((response) => {
+      addIssue() {
+           let uri = 'http://localhost:4000/issues/add';
+            this.axios.post(uri, this.issues).then((response) => {
                 console.log(response.data)
             });
         }
